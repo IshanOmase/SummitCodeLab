@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const SampleDataSchema = new mongoose.Schema({
+const SampleDataSchema = mongoose.Schema({
   _id: {
     type: mongoose.Schema.Types.ObjectId, 
     default: () => new mongoose.Types.ObjectId()
@@ -19,4 +19,4 @@ const SampleDataSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("rdata", SampleDataSchema);
+module.exports = mongoose.model("details", SampleDataSchema);

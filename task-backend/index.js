@@ -1,12 +1,12 @@
 const express = require('express');
-const cors = require('cors');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const SampleModel = require('./model/Sample')
 
 const app = express();
 const PORT = process.env.PORT || 8005;
 
-///app.use(cors());
+app.use(cors());
 
 app.use(express.json());
 
@@ -19,7 +19,7 @@ mongoose.connect("mongodb://localhost:27017/wathare")
 app.get("/samples", (req, res) => {
     SampleModel.find({})
     .then(sample => {
-        console.log('Retrieved sample data:', sample);
+        // console.log('Retrieved sample data:', sample);
         res.json(sample);
     })
     .catch((err) => {
