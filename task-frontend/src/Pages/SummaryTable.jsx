@@ -10,7 +10,7 @@ const SummaryTable = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:8005/samples"); // Replace '/api/data' with your actual API endpoint
+      const response = await axios.get("http://localhost:8005/samples"); 
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);

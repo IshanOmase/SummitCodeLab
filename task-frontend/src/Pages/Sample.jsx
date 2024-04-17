@@ -1,11 +1,15 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import TimelineChartContainer from "../Containers/TimelineChartContainer";
+import LocationTemperature from "../Components/LocationTemperature";
 
 function Sample(){    
 
 	return (
         <div>
+            <div  className="container mt-3 d-flex justify-content-center">
+                <LocationTemperature />
+            </div>
             <div className="container mt-3 d-flex justify-content-end">
                 <div className="row">
                     <div className="col">

@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const SampleModel = require('./model/Sample')
+const SampleModel = require('./model/Sample');
+const axios = require('axios');
 
 const app = express();
 const PORT = process.env.PORT || 8005;
@@ -35,6 +36,25 @@ app.post("/createSample", (req, res) => {
     .catch(err => res.json(err))
 })
 
+//third party api for getting the location and api
+app.post("/weather", async (req, res) => {
+    const { location } = req.body;
+    try {
+      const apiKey = `29ae6b744673a73836d21385cf7fcc81`;
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`; // Add units=metric to get temperature in Celsius
+      const response = await axios.get(apiUrl);
+      
+      const { main, weather } = response.data;
+      const temperature = main.temp;
+      const weatherDescription = weather[0].description;
+      
+      res.json({ temperature, weatherDescription });
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
 
 app.listen(PORT, () => {
     console.log("Server is running!");
